@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link rel="stylesheet" href="style.css" type="text/css"/>
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <py-env>
+    paths
+        ./globals.py
+        ./myscript.py
+  </py-env>
+</head>
+
+<body>
+  <py-script src='globals.py'></py-script>
+  <py-script src='myscript.py'></py-script>  
+  <py-script src='button.py'></py-script>
+  <button type="button" id="button">Run Python</button>
+    <py-script>
+        from js import document
+        from pyodide import create_proxy
+
+        def runPython():
+            print("You clicked me")
+
+        function_proxy = create_proxy(runPython)
+        document.getElementById("button").addEventListener("click", function_proxy)
+    </py-script>
+  
+
+  <script src="script.js"></script>
+  <div id="main">
+    <p id="counter-target" label="Run Python" type="button" pys-onClick="runPython">Some Placeholder Text</p>
+    <py-button pys-onclick="print('asdasdasd')">
+    </py-button>
+    <div id="output">Outputs here</div>
+  </div>
+  <script type="text/python">
+        def click():
+        global count
+        count+=1
+        print(count)
+
+    window = Tk()
+
+    button = Button(window,
+                    text="click me!",
+                    command=click,
+                    font=("Comic Sans",30),
+                    fg="#00FF00",
+                    bg="black",
+                    activeforeground="#00FF00",
+                    activebackground="black",
+                    state=ACTIVE,
+                    compound='bottom')
+    button.pack()
+  </script>
+
+</body>
+
+</html>
